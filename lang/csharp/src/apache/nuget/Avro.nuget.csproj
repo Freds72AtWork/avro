@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5BAC803B-C8B7-4A0E-A933-4C1335B59924}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Avro.nuget</RootNamespace>
+    <AssemblyName>Avro.nuget</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\build\nuget\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\build\nuget\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Apache.Avro.nuspec" />
+    <None Include="Apache.Avro.Tools.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\codegen\Avro.codegen.csproj">
+      <Project>{bf0d313c-1aa3-4900-b277-b0f5f9ddcda8}</Project>
+      <Name>Avro.codegen</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\main\Avro.main.csproj">
+      <Project>{a0a5ca3c-f58c-4d07-98b0-2c7b62ab20f0}</Project>
+      <Name>Avro.main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\msbuild\Avro.msbuild.csproj">
+      <Project>{aeb22f94-4ecf-4008-b159-389b3f05d54b}</Project>
+      <Name>Avro.msbuild</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <NuGetToolsPath Include="$(SolutionDir)\packages\NuGet.CommandLine.*\Tools\NuGet.exe">
+    </NuGetToolsPath>
+  </ItemGroup>
+  <PropertyGroup>
+    <!-- NuGet command -->
+    <NuGetExePath Condition=" '$(NuGetExePath)' == '' ">$(NuGetToolsPath)</NuGetExePath>
+    <NuGetCommand>@(NuGetToolsPath->'%(FullPath)')</NuGetCommand>
+    <NonInteractiveSwitch Condition=" '$(VisualStudioVersion)' != '' AND '$(OS)' == 'Windows_NT' ">-NonInteractive</NonInteractiveSwitch>
+    <PackageOutputDir Condition="$(PackageOutputDir) == ''">$(TargetDir.Trim('\\'))</PackageOutputDir>
+  </PropertyGroup>
+  <Target Name="AfterBuild" DependsOnTargets="$(BuildPackage)">
+  </Target>
+  <Target Name="BuildPackage">
+    <ItemGroup>
+      <NuSpec Include="*.nuspec">
+      </NuSpec>
+    </ItemGroup>
+    <Exec Command="$(NuGetCommand) pack %(NuSpec.Identity) -Properties &quot;Configuration=$(Configuration);Platform=$(Platform)&quot; $(NonInteractiveSwitch) -OutputDirectory &quot;$(PackageOutputDir)&quot; -symbols" LogStandardErrorAsError="true" />
+  </Target>
+  <PropertyGroup>
+    <BuildDependsOn>$(BuildDependsOn);BuildPackage;</BuildDependsOn>
+  </PropertyGroup>  
+</Project>

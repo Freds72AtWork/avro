@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Ingenico.Avro</id>
+        <version>1.8.2</version>
+        <title>Apache Avro</title>
+        <authors>fsouchu</authors>
+        <owners>Apache Foundation</owners>
+        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+        <projectUrl>http://avro.apache.org/</projectUrl>
+        <iconUrl>http://avro.apache.org/images/avro-logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Avro provides:
+
+      Rich data structures.
+      A compact, fast, binary data format.
+      A container file, to store persistent data.
+      Remote procedure call (RPC).
+      Simple integration with dynamic languages. Code generation is not required to read or write data files nor to use or implement RPC protocols. Code generation as an optional optimization, only worth implementing for statically typed languages.</description>
+        <summary>Apache Avro™ is a data serialization system.</summary>
+        <releaseNotes>re</releaseNotes>
+        <copyright>Copyright © 2012 The Apache Software Foundation</copyright>
+        <tags>Avro, Apache Serialization, Binary, Json, Schema</tags>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="3.5.0.0" />
+            <dependency id="log4net" version="1.2.10.0" />         
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\..\..\build\main\Release\Avro.dll" target="lib\Avro.dll" />
+    </files>
+</package>

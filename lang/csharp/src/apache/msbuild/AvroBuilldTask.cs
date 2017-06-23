@@ -18,6 +18,8 @@
 
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Avro.msbuild
 {
@@ -25,6 +27,8 @@ namespace Avro.msbuild
     {
         public override bool Execute()
         {
+            generatedFiles.Clear();
+
             var codegen = new CodeGen();
             if (SchemaFiles != null)
             {
@@ -51,6 +55,7 @@ namespace Avro.msbuild
                 for (var j = types.Count - 1; j >= 0; j--)
                 {
                     Log.LogMessage("Generating {0}.{1}", namespaces[i].Name, types[j].Name);
+                    generatedFiles.Add(new TaskItem(Path.Combine(Path.Combine(OutDir.ItemSpec, namespaces[i].Name.Replace('.', Path.DirectorySeparatorChar)), types[j].Name + ".cs")));
                 }
             }
 
@@ -60,6 +65,9 @@ namespace Avro.msbuild
 
         public ITaskItem[] SchemaFiles { get; set; }
         public ITaskItem[] ProtocolFiles { get; set; }
+        List<ITaskItem> generatedFiles = new List<ITaskItem>();
+        [Output]
+        public ITaskItem[] GeneratedFiles { get { return generatedFiles.ToArray(); } }
 
         [Required]
         public ITaskItem OutDir { get; set; }

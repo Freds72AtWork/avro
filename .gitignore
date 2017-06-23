@@ -13,3 +13,16 @@ target
 /build
 test-output
 /dist
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+**/.vs/
+
+# NuGet Packages
+*.nupkg
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
