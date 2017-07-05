@@ -27,6 +27,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\..\build\main\Release\Avro.dll" target="lib\Avro.dll" />
+        <file src="..\..\..\build\main\$configuration$\Avro.dll" target="lib\Avro.dll" />
     </files>
 </package>
