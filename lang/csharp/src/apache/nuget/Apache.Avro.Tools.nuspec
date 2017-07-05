@@ -24,16 +24,16 @@
     <copyright>Copyright © 2012 The Apache Software Foundation</copyright>
     <tags>Avro, Apache Serialization, Binary, Json, Schema</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="3.5.0.0" />
-      <dependency id="log4net" version="1.2.10.0" />
+      <dependency id="Newtonsoft.Json" version="10.0.3.0" />
+      <dependency id="log4net" version="2.0.8.0" />
       <dependency id="Ingenico.Avro" version="1.8.2.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\..\build\codegen\Release\avrogen.exe.config" target="content\avrogen.exe.config" />
-    <file src="..\..\..\build\msbuild\Release\Avro.msbuild.dll" target="lib\Avro.msbuild.dll" />
-    <file src="..\..\..\build\codegen\Release\Newtonsoft.Json.dll" target="lib\Newtonsoft.Json.dll" />
-    <file src="..\..\..\build\codegen\Release\Avro.dll" target="lib\Avro.dll" />
-    <file src="..\..\..\build\codegen\Release\avrogen.exe" target="lib\avrogen.exe" />
+    <file src="..\..\..\build\codegen\$configuration$\avrogen.exe.config" target="content\avrogen.exe.config" />
+    <file src="..\..\..\build\msbuild\$configuration$\Avro.msbuild.dll" target="lib\Avro.msbuild.dll" />
+    <file src="..\..\..\build\codegen\$configuration$\Newtonsoft.Json.dll" target="lib\Newtonsoft.Json.dll" />
+    <file src="..\..\..\build\codegen\$configuration$\Avro.dll" target="lib\Avro.dll" />
+    <file src="..\..\..\build\codegen\$configuration$\avrogen.exe" target="lib\avrogen.exe" />
   </files>
 </package>
