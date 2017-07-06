@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Ingenico.Avro</id>
-        <version>1.8.2.1</version>
+        <version>1.8.2.20170706</version>
         <title>Apache Avro</title>
         <authors>fsouchu</authors>
         <owners>Apache Foundation</owners>
@@ -22,8 +22,8 @@
         <copyright>Copyright © 2012 The Apache Software Foundation</copyright>
         <tags>Avro, Apache Serialization, Binary, Json, Schema</tags>
         <dependencies>
-            <dependency id="Newtonsoft.Json" version="3.5.0.0" />
-            <dependency id="log4net" version="1.2.10.0" />         
+            <dependency id="Newtonsoft.Json" version="10.0.3.0" />
+            <dependency id="log4net" version="2.0.8.0" />         
         </dependencies>
     </metadata>
     <files>

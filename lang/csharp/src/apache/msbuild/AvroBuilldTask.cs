@@ -20,6 +20,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Avro.msbuild
 {
@@ -58,14 +59,14 @@ namespace Avro.msbuild
                     generatedFiles.Add(new TaskItem(Path.Combine(Path.Combine(OutDir.ItemSpec, namespaces[i].Name.Replace('.', Path.DirectorySeparatorChar)), types[j].Name + ".cs")));
                 }
             }
-
+            
             codegen.WriteTypes(OutDir.ItemSpec);
             return true;
         }
 
         public ITaskItem[] SchemaFiles { get; set; }
         public ITaskItem[] ProtocolFiles { get; set; }
-        List<ITaskItem> generatedFiles = new List<ITaskItem>();
+        HashSet<ITaskItem> generatedFiles = new HashSet<ITaskItem>();
         [Output]
         public ITaskItem[] GeneratedFiles { get { return generatedFiles.ToArray(); } }
 
