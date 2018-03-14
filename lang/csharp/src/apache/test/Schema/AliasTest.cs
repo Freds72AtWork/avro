@@ -29,7 +29,7 @@ namespace Avro.Test
     {
         [TestCase(@"{""type"":""record"",""name"":""LongList"", ""namespace"":""com"", ""aliases"":[""c"",""foo.y""],
                    ""fields"":
-                    [{""name"":""f1"",""type"":""long"", ""extraprop"":""important"", ""id"":""1029"", ""aliases"":[""a"",""b"",""c""] },
+                    [{""name"":""f1"",""type"":""long"", ""id"":""1029"", ""aliases"":[""a"",""b"",""c""] },
                      {""name"":""f2"",""type"": ""int""}]}", 
                    true)]
         [TestCase(@"{""type"":""record"",""name"":""LongList"", ""aliases"":[""Alias1""],
@@ -37,7 +37,7 @@ namespace Avro.Test
                     {""name"":""f2"",""type"": ""int""}]}", 
                     false)]
         [TestCase(@"{""type"":""record"",""name"":""LongList"", ""aliases"":[""Alias1""], ""customprop"":""123456"",
-                   ""fields"":[{""name"":""f1"",""type"":""long"", ""order"":""ascending"", ""fprop"":""faaa"" },
+                   ""fields"":[{""name"":""f1"",""type"":""long"", ""order"":""ascending"" },
                     {""name"":""f2"",""type"": ""int""}]}", 
                     true)]
         [TestCase(@"{""type"":""record"",""name"":""LongList"", ""aliases"":[""Alias1""],

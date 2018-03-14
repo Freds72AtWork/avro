@@ -225,11 +225,14 @@ namespace Avro
         /// Hash code function
         /// </summary>
         /// <returns></returns>
+        int? hash;
         public override int GetHashCode()
         {
-            return 17 * Name.GetHashCode() + Pos + 19 * getHashCode(Documentation) +
+            if ( !hash.HasValue)
+                hash = 17 * Name.GetHashCode() + Pos + 19 * getHashCode(Documentation) +
                    23 * getHashCode(Ordering) + 29 * getHashCode(DefaultValue) + 31 * Schema.GetHashCode() +
                    37 * getHashCode(Props);
+            return hash.Value;
         }
 
         /// <summary>
